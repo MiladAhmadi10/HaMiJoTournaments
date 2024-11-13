@@ -1,0 +1,30 @@
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const tournamentRoutes = require('../routes/tournaments');
+
+const app = express();
+
+//Connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/hamijotournament', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+//Middleware setup
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, '../../public')));
+app.use(cookieParser());
+
+//View engine setup
+app.set('views', path.join(__dirname, '../views'));
+app.set('view engine', 'ejs');
+
+//Use routes
+app.use('/', tournamentRoutes);
+
+module.exports = app;

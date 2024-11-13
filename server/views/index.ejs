@@ -1,0 +1,7 @@
+<h1>Tournaments</h1>
+<ul>
+  <% tournaments.forEach(tournament => { %>
+    <li><%= tournament.name %> - <%= tournament.date.toDateString() %></li>
+  <% }) %>
+</ul>
+<a href="/create">Create a New Tournament</a>
