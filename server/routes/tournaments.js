@@ -1,21 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const Tournament = require('../models/tournament'); 
+const tournamentController = require('../controllers/tournamentController');
 
-router.get('/', async (req, res) => {
-  const tournaments = await Tournament.find();
-  res.render('index', { tournaments });
-});
-
-router.get('/create', (req, res) => {
-  res.render('createTournament');
-});
-
-router.post('/create', async (req, res) => {
-  const { name, date } = req.body;
-  const tournament = new Tournament({ name, date });
-  await tournament.save();
-  res.redirect('/');
-});
+//defining routes
+router.get('/', tournamentController.listTournaments);
+router.get('/create', tournamentController.showCreateForm);
+router.post('/create', tournamentController.createTournament);
+router.get('/edit/:id', tournamentController.showEditForm);
+router.post('/edit/:id', tournamentController.editTournament);
+router.get('/delete/:id', tournamentController.deleteTournament);
 
 module.exports = router;
