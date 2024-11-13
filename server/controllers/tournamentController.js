@@ -36,3 +36,17 @@ exports.deleteTournament = async (req, res) => {
   await Tournament.findByIdAndDelete(req.params.id);
   res.redirect('/');
 };
+
+//added console log to see where the data is being submitted
+exports.createTournament = async (req, res) => {
+    console.log(req.body); 
+    const { name, date, location, description } = req.body;
+    try {
+      await Tournament.create({ name, date, location, description });
+      res.redirect('/');
+    } catch (error) {
+      console.error(error);
+      res.status(400).send('Error creating tournament: ' + error.message);
+    }
+  };
+  
