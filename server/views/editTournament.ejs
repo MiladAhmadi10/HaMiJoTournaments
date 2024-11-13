@@ -1,0 +1,8 @@
+<h1>Edit Tournament</h1>
+<form action="/edit/<%= tournament._id %>" method="POST">
+  <input type="text" name="name" value="<%= tournament.name %>" required />
+  <input type="date" name="date" value="<%= tournament.date.toISOString().substring(0, 10) %>" required />
+  <input type="text" name="location" value="<%= tournament.location %>" required />
+  <textarea name="description"><%= tournament.description %></textarea>
+  <button type="submit">Update</button>
+</form>
