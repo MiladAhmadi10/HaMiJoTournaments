@@ -1,7 +1,11 @@
-<h1>Tournaments</h1>
+<h1>All Tournaments</h1>
 <ul>
   <% tournaments.forEach(tournament => { %>
-    <li><%= tournament.name %> - <%= tournament.date.toDateString() %></li>
+    <li>
+      <%= tournament.name %> - <%= tournament.date.toDateString() %>
+      <a href="/edit/<%= tournament._id %>">Edit</a>
+      <a href="/delete/<%= tournament._id %>">Delete</a>
+    </li>
   <% }) %>
 </ul>
-<a href="/create">Create a New Tournament</a>
+<a href="/create">Create New Tournament</a>
