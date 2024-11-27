@@ -10,4 +10,14 @@ router.get('/edit/:id', tournamentController.showEditForm);
 router.post('/edit/:id', tournamentController.editTournament);
 router.get('/delete/:id', tournamentController.deleteTournament);
 
+//login
+router.get('/login', tournamentController.displayLoginPage);
+router.post('/login', tournamentController.processLoginPage);
+
+//register
+router.get('/register', tournamentController.displayRegisterPage);
+router.post('/register', tournamentController.processRegisterPage);
+//logout
+router.get('/logout', tournamentController.peformLogout);
+
 module.exports = router;
