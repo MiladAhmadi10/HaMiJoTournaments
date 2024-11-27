@@ -22,6 +22,23 @@ mongoose.connect('mongodb://localhost:27017/hamijotournament', {
   useUnifiedTopology: true,
 });
 
+
+//set up express sesion
+
+app.use(session({
+  secret:"SomeSecret",
+  saveUninitialized:false,
+  resave:false
+}))
+
+
+//intilize flash
+app.use(flash());
+
+//initilize flash
+app.use(passport.initialize());
+app.use(passport.session());
+
 //Middleware setup
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
