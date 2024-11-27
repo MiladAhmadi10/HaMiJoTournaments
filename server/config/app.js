@@ -39,6 +39,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+//user model instance
+let userModel = require('../models/user');
+let user = userModel.User;
+
+///serizlize and deserialize
+passport.serializeUser(user.serializeUser());
+passport.deserializeUser(user.deserializeUser());
+
 //Middleware setup
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
