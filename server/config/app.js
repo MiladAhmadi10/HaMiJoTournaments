@@ -5,8 +5,16 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const tournamentRoutes = require('../routes/tournaments');
+let session = require('express-session')
+let passport = require('passport')
+let passportLocal = require('passport-local')
+let localStrategy = passportLocal.Strategy;
+let flash = require(connect-flash);
+
 
 const app = express();
+
+
 
 //Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/hamijotournament', {
